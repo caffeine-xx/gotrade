@@ -1,0 +1,10 @@
+message := header DELIM body DELIM trailer
+header := BeginString DELIM BodyLength DELIM MsgType
+trailer := CheckSum
+component := (field | group)+
+body := (component DELIM)* component
+field := (FieldName | Field2Name | ....)
+
+...
+FieldName := tagnn EQUAL DataType
+

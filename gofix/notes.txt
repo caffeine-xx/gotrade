@@ -1,0 +1,60 @@
+
+# -- types:
+
+# not really a type
+type_POSINT=digit+
+type_INT='-'? digit+
+type_LENGTH=type_POSINT
+type_NUMINGROUP=type_POSINT
+type_SEQNUM=type_POSINT
+type_TAGNUM=[1-9]+ digit*
+type_DAYOFMONTH=digit{2} # FIXME: should only be ints from 1-31
+
+# pseudo-code for ragel:
+type_STRING = [a-z]+
+type_CHAR = [a-z]
+type_INT = ...
+
+field_Account = 1 '=' type_STRING
+
+structure:
+<fix major="4" minor="4">
+  <header>
+    <field name="field" required="Y"/>
+  </header>
+  <trailer>
+    <field name="field" required"N"/>
+  </trailer>
+  <messages>
+    <message name="messagename" msgtype="type" msgcat="category">
+      <field name="fieldname" required="N"/>
+      <component name="component" required="N"/>
+      <group name="groupname" required="N">
+        <field name="fieldname" required="N"/>
+        <component name="component" required="N"/>
+        <group name="groupname" required="N">
+          <field name="fieldname" required="N"/>
+          <component name="component" required="N"/>
+        </group>
+      </group>
+  </messages>
+  <components>
+    <component name="component">
+      <field name="fieldname" required="Y"/>
+      <group name="groupname" required="N">
+        <field name="fieldname" required="N"/>
+        <component name="component" required="N"/>
+      </group>
+    </component>
+  </component>
+  <fields>
+    <field number="1" name="Account" type="STRING"/>
+    <field number="4" name="AdvSide" type="CHAR">
+      <value enum="B" description="BUY"/>
+      <value enum="S" description="SELL"/>
+      <value enum="X" description="CROSS"/>
+      <value enum="T" description="TRADE"/>
+    </field>
+  </fields>
+</fix>
+

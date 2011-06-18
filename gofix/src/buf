@@ -1,0 +1,7 @@
+  <fields>
+    <field number="939" name="TrdRptStatus" type="INT">
+      <value enum="0" description="ACCEPTED"/>
+      <value enum="1" description="REJECTED"/>
+    </field>
+  </fields>
+

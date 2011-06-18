@@ -1,0 +1,3 @@
+#!/bin/sh
+ragel -R lexer.rl
+ruby lexer.rb
