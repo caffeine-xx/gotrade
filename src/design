@@ -1,0 +1,24 @@
+type Tag int
+type Value []byte
+
+type FixScanner interface {
+  HasNext() bool
+  NextTag() Tag 
+  NextValue() Value
+}
+
+type FixBuffer struct {
+  buffer []byte
+  pos int
+}
+
+type FixReader interface {
+  NextFieldType() reflect.Type // returns a field type
+  NextXYZField() // returns the field
+}  
+
+type FixMessageReader interface {
+  NextMessageType() reflect.Type
+  NextXYZMessage()
+}
+
